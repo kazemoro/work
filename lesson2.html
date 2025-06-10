@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods List</title>
+    <style>
+        header {
+            background-color: black;
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .cart-button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .goods-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .goods-item {
+            width: 200px;
+            height: 200px;
+            border: solid 2px #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <button class="cart-button" type="button">Корзина</button>
+    </header>
+
+
+    <div class="goods-list"></div>
+
+    <script>
+        class GoodsItem {
+            constructor(title, price) {
+                this.title = title;
+                this.price = price;
+            }
+
+            render() {
+                return `<div class="goods-item"><h3>${this.title}</h3><p>${this.price}</p></div>`;
+            }
+        }
+
+        class GoodsList {
+            constructor() {
+                this.goods = [];
+            }
+
+            fetchGoods() {
+                this.goods = [
+                    { title: 'Shirt', price: 150 },
+                    { title: 'Socks', price: 50 },
+                    { title: 'Jacket', price: 350 },
+                    { title: 'Shoes', price: 250 },
+                ];
+            }
+
+            render() {
+                let listHtml = '';
+                this.goods.forEach(good => {
+                    const goodItem = new GoodsItem(good.title, good.price);
+                    listHtml += goodItem.render();
+                });
+                document.querySelector('.goods-list').innerHTML = listHtml;
+            }
+
+            getTotalPrice() {
+                let totalPrice = 0;
+                this.goods.forEach(good => {
+                    totalPrice += good.price;
+                });
+                console.log("Сумма всех товаров:", totalPrice);
+            }
+
+        }
+
+        const list = new GoodsList();
+        list.fetchGoods();
+        list.render();
+        list.getTotalPrice();
+
+    </script>
+</body>
+
+</html>

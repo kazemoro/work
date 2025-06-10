@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>eShop</title>
+</head>
+<style>
+    header {
+        background-color: black;
+        padding: 20px;
+        color: white;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .cart-button {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .goods-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        padding: 20px;
+        justify-content: center;
+    }
+
+    .goods-item {
+        width: 200px;
+        height: 200px;
+        border: solid 2px #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <header>
+        <button class="cart-button" type="button">Корзина</button>
+    </header>
+    <main>
+        <div class="goods-list"></div>
+    </main>
+
+
+    <script>
+        'use strict'
+
+        const goods = [
+            { title: 'Shirt', price: 150 },
+            { title: 'Socks', price: 50 },
+            { title: 'Jacket', price: 350 },
+            { title: 'Shoes', price: 250 },
+        ];
+
+        const renderGoodsItem = (title, price) => {
+            return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
+        };
+
+        const renderGoodsList = (list) => {
+            let goodsList = list.map(item => renderGoodsItem(item.title, item.price)).join("");
+            document.querySelector('.goods-list').innerHTML = goodsList;
+        }
+
+        renderGoodsList(goods);
+    </script>
+</body>
+
+</html>
