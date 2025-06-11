@@ -4,23 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goods List</title>
+    <title>Goods List</title> <!-- Заголовок страницы -->
+
     <style>
+        /* Стили для шапки */
         header {
             background-color: black;
             padding: 20px;
             color: white;
             display: flex;
             justify-content: flex-end;
+            /* Элементы внутри шапки выравниваются по правому краю */
             align-items: center;
         }
 
+        /* Стили для кнопки корзины */
         .cart-button {
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
         }
 
+        /* Список товаров – контейнер */
         .goods-list {
             display: flex;
             flex-wrap: wrap;
@@ -28,6 +33,7 @@
             padding: 20px;
             justify-content: center;
         }
+
 
         .goods-item {
             width: 200px;
@@ -39,7 +45,6 @@
             align-items: center;
         }
     </style>
-
 </head>
 
 <body>
@@ -47,26 +52,29 @@
         <button class="cart-button" type="button">Корзина</button>
     </header>
 
-
     <div class="goods-list"></div>
 
     <script>
+        // Класс одного товара
         class GoodsItem {
             constructor(title, price) {
                 this.title = title;
                 this.price = price;
             }
 
+            // Метод для генерации HTML-разметки товара
             render() {
                 return `<div class="goods-item"><h3>${this.title}</h3><p>${this.price}</p></div>`;
             }
         }
 
+        // Класс списка товаров
         class GoodsList {
             constructor() {
                 this.goods = [];
             }
 
+            // Метод для загрузки списка товаров
             fetchGoods() {
                 this.goods = [
                     { title: 'Shirt', price: 150 },
@@ -76,6 +84,7 @@
                 ];
             }
 
+            // Метод отображения всех товаров
             render() {
                 let listHtml = '';
                 this.goods.forEach(good => {
@@ -85,6 +94,7 @@
                 document.querySelector('.goods-list').innerHTML = listHtml;
             }
 
+            // Метод для подсчета общей суммы всех товаров
             getTotalPrice() {
                 let totalPrice = 0;
                 this.goods.forEach(good => {
@@ -92,14 +102,13 @@
                 });
                 console.log("Сумма всех товаров:", totalPrice);
             }
-
         }
 
+        // Создание экземпляра списка товаров
         const list = new GoodsList();
-        list.fetchGoods();
-        list.render();
-        list.getTotalPrice();
-
+        list.fetchGoods(); // Загрузка товаров
+        list.render();     // Отображение товаров на странице
+        list.getTotalPrice(); // Подсчет и вывод общей стоимости товаров
     </script>
 </body>
 

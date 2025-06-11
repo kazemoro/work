@@ -4,30 +4,35 @@
 <head>
     <title>eShop</title>
 </head>
+
 <style>
+    /* Стили для шапки сайта */
     header {
         background-color: black;
         padding: 20px;
         color: white;
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-end; 
         align-items: center;
     }
 
+    /* Стили для кнопки корзины */
     .cart-button {
         border: none;
         padding: 10px 20px;
         border-radius: 5px;
     }
 
+    /* Стили для контейнера со списком товаров */
     .goods-list {
         display: flex;
         flex-wrap: wrap;
         gap: 25px;
         padding: 20px;
-        justify-content: center;
+        justify-content: center; 
     }
 
+    /* Стили для отдельного товара */
     .goods-item {
         width: 200px;
         height: 200px;
@@ -40,17 +45,20 @@
 </style>
 
 <body>
+   
     <header>
         <button class="cart-button" type="button">Корзина</button>
     </header>
+
+    
     <main>
         <div class="goods-list"></div>
     </main>
 
-
     <script>
         'use strict'
 
+        // Массив товаров с названиями и ценами
         const goods = [
             { title: 'Shirt', price: 150 },
             { title: 'Socks', price: 50 },
@@ -58,15 +66,21 @@
             { title: 'Shoes', price: 250 },
         ];
 
+        // Функция возвращающая HTML-разметку одного товара
         const renderGoodsItem = (title, price) => {
             return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
         };
 
+        // Функция отображающая весь список товаров на странице
         const renderGoodsList = (list) => {
-            let goodsList = list.map(item => renderGoodsItem(item.title, item.price)).join("");
+            let goodsList = "";
+            for (let i = 0; i < list.length; i++) {
+                goodsList += renderGoodsItem(list[i].title, list[i].price);
+            }
             document.querySelector('.goods-list').innerHTML = goodsList;
         }
 
+        // Вызов функции отображения товаров
         renderGoodsList(goods);
     </script>
 </body>
